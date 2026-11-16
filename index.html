@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f7f8f5">
 
-<title>ChatGPT Plus 充值购买｜国内开通 Plus 会员 ¥150/月｜AI 小古</title>
-<meta name="description" content="ChatGPT Plus 国内充值购买：Plus ¥150/月、Pro 5x ¥750/月，开通到本人账号，不提交登录密码，订单可查，正常约 2–5 分钟到账。附 Plus / Pro 额度与订阅区别说明。">
-<meta name="keywords" content="ChatGPT Plus 充值,ChatGPT Plus 购买,ChatGPT Plus 会员,ChatGPT Plus 价格,ChatGPT Plus 订阅,ChatGPT Plus 额度,ChatGPT Pro,AI 小古">
+<title>ChatGPT Plus / Pro 充值｜Pro 100 ¥750、Pro 200 ¥1350｜AI 小古</title>
+<meta name="description" content="ChatGPT Plus / Pro 国内订阅开通：Plus ¥150/月、Pro 100 ¥750/月、Pro 200 ¥1350/月。按日常使用、高频工作与重度专业任务选择套餐，开通到本人账号，订单可查。">
+<meta name="keywords" content="ChatGPT Plus 充值,ChatGPT Plus 购买,ChatGPT Plus 价格,ChatGPT Pro 100,ChatGPT Pro 200,Pro 100 订阅,Pro 200 订阅,ChatGPT Pro 额度,AI 小古">
 <meta name="author" content="AI 小古">
 <meta name="robots" content="index,follow">
 <meta name="format-detection" content="telephone=no">
@@ -1054,7 +1054,11 @@ svg{
 }
 
 .plan-note{
+  min-height:50px;
   padding:0 20px 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-align:center;
   font-size:11px;
   line-height:1.5;
@@ -1134,10 +1138,23 @@ svg{
 
 .flow-copy h2{
   margin-top:15px;
-  font-size:clamp(2.35rem,3.35vw,3.15rem);
+  font-size:clamp(2.15rem,3.05vw,2.6rem);
   font-weight:950;
-  line-height:1.14;
+  line-height:1.16;
   letter-spacing:-.052em;
+}
+
+.flow-title span{
+  display:block;
+  white-space:nowrap;
+}
+
+.flow-step > div{
+  transition:transform .36s var(--ease-out),opacity .28s var(--ease);
+}
+
+.flow-step.active > div{
+  transform:translateX(2px);
 }
 
 .flow-steps{
@@ -1153,9 +1170,9 @@ svg{
   border:1px solid transparent;
   border-radius:14px;
   display:grid;
-  grid-template-columns:31px minmax(0,1fr);
-  gap:12px;
-  align-items:start;
+  grid-template-columns:42px minmax(0,1fr);
+  gap:13px;
+  align-items:center;
   text-align:left;
   color:#647169;
   transition:
@@ -1179,37 +1196,42 @@ svg{
 }
 
 .fs-num{
-  width:31px;
-  height:31px;
-  display:grid;
-  place-items:center;
-  border:1px solid #d5ded3;
-  border-radius:50%;
-  background:#fbfcfa;
-  color:#5c695f;
-  font:850 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
-  transition:
-    background .32s var(--ease),
-    border-color .32s var(--ease),
-    color .32s var(--ease);
+  grid-column:1;
+  grid-row:1;
+  justify-self:stretch;
+  align-self:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  min-height:38px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#87928a;
+  text-align:center;
+  font:850 19px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:-.055em;
+  transition:color .28s var(--ease),opacity .28s var(--ease);
+}
+
+.flow-step > div{
+  grid-column:2;
+  grid-row:1;
+  min-width:0;
 }
 
 .flow-step:hover .fs-num{
-  border-color:#a8bd8d;
-  color:#4c5a50;
-  background:#eef6e3;
+  color:#587247;
 }
 
 .flow-step.active .fs-num{
-  background:#eaf4de;
-  border-color:#b2cb98;
-  color:#3a5526;
+  color:#476535;
 }
 
 .flow-step.done .fs-num{
-  background:#f1f6ec;
-  border-color:#c6d6ba;
-  color:#647a58;
+  color:#829876;
 }
 
 .flow-step b{
@@ -1322,6 +1344,12 @@ svg{
   opacity:.95;
 }
 
+.s-node{
+  transform-box:fill-box;
+  transform-origin:center;
+  transition:transform .42s var(--ease-out),opacity .32s var(--ease);
+}
+
 .s-node-box{
   fill:#fff;
   stroke:#d8e1d6;
@@ -1350,6 +1378,10 @@ svg{
 
 .s-node.done .s-node-icon{
   stroke:#5b7844;
+}
+
+.s-node.active{
+  transform:translateY(-4px);
 }
 
 .s-node.active .s-node-box{
@@ -1392,6 +1424,15 @@ svg{
   font-size:12px;
   font-weight:800;
   fill:#5d6b62;
+}
+
+.s-note.is-updating{
+  animation:flowNoteIn .34s var(--ease-out) both;
+}
+
+@keyframes flowNoteIn{
+  from{opacity:.18;transform:translateY(4px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 .s-runner-halo{
@@ -2233,18 +2274,23 @@ svg{
   }
 
   .flow-grid{
-    grid-template-columns:1fr;
-    gap:34px;
+    grid-template-columns:.9fr 1.1fr;
+    gap:28px;
   }
 
-  .flow-sticky{
-    min-height:0;
+  .flow-copy h2{
+    font-size:clamp(2rem,3.25vw,2.45rem);
   }
 
   .flow-visual{
-    height:390px;
-    min-height:320px;
-    margin-top:24px;
+    height:min(370px,48vh);
+    min-height:300px;
+    margin-top:0;
+  }
+
+  .flow-svg{
+    width:88%;
+    height:88%;
   }
 
   .faq-layout{
@@ -2630,8 +2676,8 @@ svg{
   }
 
   .flow-copy h2{
-    font-size:2.35rem;
-    line-height:1.12;
+    font-size:clamp(2rem,8vw,2.3rem);
+    line-height:1.14;
   }
 
   .flow-steps{
@@ -2644,7 +2690,7 @@ svg{
     width:100%;
     min-width:0;
     padding:13px;
-    grid-template-columns:30px minmax(0,1fr);
+    grid-template-columns:38px minmax(0,1fr);
     gap:10px;
   }
 
@@ -2668,8 +2714,9 @@ svg{
   }
 
   .fs-num{
-    width:30px;
-    height:30px;
+    width:38px;
+    min-height:36px;
+    font-size:18px;
   }
 
   .flow-visual{
@@ -2917,6 +2964,10 @@ svg{
 
 @media(max-width:420px){
 
+  .flow-copy h2{
+    font-size:clamp(1.8rem,7.8vw,2.2rem);
+  }
+
   .hero-v3{
     padding-top:91px;
   }
@@ -3044,11 +3095,6 @@ svg{
   }
 }
 
-/* SEO 补充：可读性 + 额度段落 */
-.seo-copy{padding:56px 0 18px;background:#f2f6ef}
-.seo-copy h2{margin:12px 0 14px;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:950;letter-spacing:-.04em;line-height:1.2}
-.seo-copy p{max-width:780px;margin-bottom:12px;font-size:14.5px;line-height:1.85;color:var(--reading-body)}
-.seo-copy a{color:var(--accent-deep);text-decoration:underline}
 .faq-a p{font-size:13.5px}.faq-q{font-size:14.5px}.faq-a a{color:var(--accent-deep);text-decoration:underline}
 .plan-lines li,.plan-desc{font-size:13px}
 .plan-note,.comparison-note,.final-main p,.final-side p,.mini-meta div,.mini-meta strong,.footer-brand p,.footer-col a,.footer-bottom,.modal-head p,.modal-foot,.mo-body span,.checkitem b,.checkitem span,.channel-legend{font-size:12.5px}
@@ -3426,7 +3472,7 @@ svg{
 
             </div>
 
-            <b>正常约 2–5 分钟</b>
+            <b>正常约 1–3 分钟</b>
             <small>正常情况下到账</small>
 
           </div>
@@ -3586,14 +3632,14 @@ svg{
 
 
           <div class="plan-note">
-            偏日常工作流 · 个人账号
+            适合日常聊天 · 写作与轻量办公
           </div>
 
         </article>
 
 
         <!-- =================================================
-             PRO 5X
+             PRO 100
              ================================================= -->
         <article class="plan-col">
 
@@ -3619,7 +3665,7 @@ svg{
               </span>
 
               <div class="plan-name">
-                <h3>ChatGPT Pro 5x</h3>
+                <h3>ChatGPT Pro 100</h3>
               </div>
 
               <span class="official-plan-badge">
@@ -3654,7 +3700,7 @@ svg{
 
 
             <p class="plan-desc">
-              面向高频 Codex、深度研究与长任务。
+              适合经常使用 AI 编程、深度研究与长任务的用户。
             </p>
 
           </div>
@@ -3663,11 +3709,11 @@ svg{
           <ul class="plan-lines">
 
             <li>
-              官方 Pro $100 档位 · 更高使用额度
+              支持 Pro 模型、Codex 与深度研究等功能
             </li>
 
             <li>
-              更适合高频 Codex、研究与长任务
+              适合高频开发、复杂分析与较长任务
             </li>
 
             <li>
@@ -3684,7 +3730,7 @@ svg{
               type="button"
               data-buy
             >
-              购买 Pro 5x
+              购买 Pro 100
               <span class="arr">↗</span>
             </button>
 
@@ -3692,14 +3738,14 @@ svg{
 
 
           <div class="plan-note">
-            高频使用 · 深度研究 · 长任务
+            适合高频开发 · 深度研究与专业工作
           </div>
 
         </article>
 
 
         <!-- =================================================
-             PRO 20X
+             PRO 200
              ================================================= -->
         <article class="plan-col">
 
@@ -3745,7 +3791,7 @@ svg{
               </span>
 
               <div class="plan-name">
-                <h3>ChatGPT Pro 10x</h3>
+                <h3>ChatGPT Pro 200</h3>
               </div>
 
               <span class="official-plan-badge">
@@ -3780,7 +3826,7 @@ svg{
 
 
             <p class="plan-desc">
-              面向全天重度、多项目并行使用。
+              适合全天高强度使用、复杂项目与多任务并行。
             </p>
 
           </div>
@@ -3789,15 +3835,15 @@ svg{
           <ul class="plan-lines">
 
             <li>
-              官方 Pro $200 档位（Pro 200）· 新订阅 10x 用量
+              更充足的 Pro 使用空间，适合高强度工作
             </li>
 
             <li>
-              适合高频 Codex、深度研究与长任务
+              适合重度 Codex、深度研究与连续任务
             </li>
 
             <li>
-              适合全天重度、多项目并行使用
+              权益直接开通到本人账号
             </li>
 
           </ul>
@@ -3805,13 +3851,13 @@ svg{
 
           <div class="plan-bottom">
 
-            <button class="cta dark" type="button" data-buy>购买 Pro 10x<span class="arr">↗</span></button>
+            <button class="cta dark" type="button" data-buy>购买 Pro 200<span class="arr">↗</span></button>
 
           </div>
 
 
           <div class="plan-note">
-            新订阅为 Plus 的 10 倍用量 · 以官方为准
+            适合重度开发 · 长任务与多项目并行
           </div>
 
         </article>
@@ -3833,14 +3879,6 @@ svg{
     </div>
   </section>
 
-
-  <section class="seo-copy" id="quota"><div class="container">
-    <div class="eyebrow">ABOUT PLANS</div>
-    <h2>ChatGPT Plus 额度与会员区别</h2>
-    <p>ChatGPT 个人付费订阅主要是 Plus（官网 $20/月）和 Pro 两档，Pro 又分 $100 与 $200。按 OpenAI 帮助中心的说明，Pro $100 的使用额度约为 Plus 的 5 倍；Pro $200 此前约为 20 倍，9 月底重新开放新订阅后，新订阅的用量下调（约为 Plus 的 10 倍，以官方说明为准）。</p>
-    <p>日常聊天、写作、读文件，Plus 通常够用；经常跑 Codex、做深度研究或长任务，再考虑 Pro 5x。OpenAI 另有 $500 的 Pro 500，本站是否供应以商品页为准。官方目前也不支持年付或一次预付多个月，订阅按月计算。</p>
-    <p class="seo-links">延伸阅读：<a href="/chatgpt-plus-recharge">ChatGPT Plus 怎么充值</a> · <a href="/chatgpt-plus-price">价格与订阅</a> · <a href="/chatgpt-plus-quota">额度详解</a> · <a href="/chatgpt-plus-free-trial">有没有免费试用</a> · <a href="/chatgpt-plus-faq">更多问题</a></p>
-  </div></section>
 
   <!-- =====================================================
        FLOW
@@ -3871,9 +3909,9 @@ svg{
                 02 / HOW IT WORKS
               </div>
 
-              <h2>
-                ChatGPT Plus 怎么充值？<br>
-                四步开通，讲清楚。
+              <h2 class="flow-title">
+                <span>ChatGPT Plus 充值</span>
+                <span>四步开通，讲清楚。</span>
               </h2>
 
 
@@ -3966,7 +4004,7 @@ svg{
                     <b>充值成功，等待到账</b>
 
                     <span class="desc">
-                      正常约 2–5 分钟到账，订单状态可查
+                      正常约 1–3 分钟到账，订单状态可查
                     </span>
 
                   </div>
@@ -4580,7 +4618,7 @@ svg{
         </div>
 
         <h2>
-          ChatGPT Plus 充值<br>常见问题。
+          ChatGPT Plus / Pro<br>订阅常见问题。
         </h2>
 
         <p>
@@ -4616,309 +4654,53 @@ svg{
 
       <div class="faq-list reveal d1">
 
-
-        <!-- 01 -->
         <div class="faq-item open">
-
-          <button
-            class="faq-q"
-            type="button"
-            aria-expanded="true"
-          >
-
-            价格是官方正版吗？
-
-            <span
-              class="faq-plus"
-              aria-hidden="true"
-            >
-              ＋
-            </span>
-
+          <button class="faq-q" type="button" aria-expanded="true">
+            是官方正版吗？开通到自己的账号吗？
+            <span class="faq-plus" aria-hidden="true">＋</span>
           </button>
-
-          <div class="faq-a">
-
-            <div>
-
-              <p>
-                是的，开通的是官方正版订阅，
-                可查订阅和订单。
-              </p>
-
-            </div>
-
-          </div>
-
+          <div class="faq-a"><div><p>是官方正版订阅，直接开通到你自己的账号，不是共享号。</p></div></div>
         </div>
 
-
-        <!-- 02 -->
         <div class="faq-item">
-
-          <button
-            class="faq-q"
-            type="button"
-            aria-expanded="false"
-          >
-
-            是开通到本人的账号吗？
-
-            <span
-              class="faq-plus"
-              aria-hidden="true"
-            >
-              ＋
-            </span>
-
+          <button class="faq-q" type="button" aria-expanded="false">
+            需要提供登录密码吗？
+            <span class="faq-plus" aria-hidden="true">＋</span>
           </button>
-
-          <div class="faq-a">
-
-            <div>
-
-              <p>
-                是。会员直接开通到你自己的账号，
-                不是共享号也不是成品号，
-                权益直接落到你的账号上。
-              </p>
-
-            </div>
-
-          </div>
-
+          <div class="faq-a"><div><p>不需要密码、邮箱验证码或恢复码；AT 只需按页面提示在开通页填写，不要转发给他人。</p></div></div>
         </div>
 
-
-        <!-- 03 -->
         <div class="faq-item">
-
-          <button
-            class="faq-q"
-            type="button"
-            aria-expanded="false"
-          >
-
-            需要提交登录密码吗？
-
-            <span
-              class="faq-plus"
-              aria-hidden="true"
-            >
-              ＋
-            </span>
-
+          <button class="faq-q" type="button" aria-expanded="false">
+            付款后多久到账？
+            <span class="faq-plus" aria-hidden="true">＋</span>
           </button>
-
-          <div class="faq-a">
-
-            <div>
-
-              <p>
-                不需要。购买与支付不提交登录密码、
-                邮箱验证码或恢复码。
-                按页面提示完成卡密与账号 AT
-                等必要步骤即可。
-              </p>
-
-            </div>
-
-          </div>
-
+          <div class="faq-a"><div><p>正常约 1–3 分钟到账，具体以订单状态为准。</p></div></div>
         </div>
 
-
-        <!-- 04 -->
         <div class="faq-item">
-
-          <button
-            class="faq-q"
-            type="button"
-            aria-expanded="false"
-          >
-
-            订单状态和交付进度可以查吗？
-
-            <span
-              class="faq-plus"
-              aria-hidden="true"
-            >
-              ＋
-            </span>
-
+          <button class="faq-q" type="button" aria-expanded="false">
+            会员掉了或账号被封，怎么售后？
+            <span class="faq-plus" aria-hidden="true">＋</span>
           </button>
-
-          <div class="faq-a">
-
-            <div>
-
-              <p>
-                可以。付款、充值与交付进度都可以查询，
-                按页面提示查看当前订单状态。
-              </p>
-
-            </div>
-
-          </div>
-
+          <div class="faq-a"><div><p>开通后 1 个月内，如果会员权益提前失效，经核实确属订阅异常，会按剩余未使用天数折算退款。若账号被平台封禁，通常与平台风控、账号自身状态或使用情况有关，这类情况不在退款范围内。建议遵守平台规则正常使用；遇到会员异常，及时联系客服核实处理。</p></div></div>
         </div>
 
-
-        <!-- 05 -->
         <div class="faq-item">
-
-          <button
-            class="faq-q"
-            type="button"
-            aria-expanded="false"
-          >
-
-            输入 AT 后多久到账？
-
-            <span
-              class="faq-plus"
-              aria-hidden="true"
-            >
-              ＋
-            </span>
-
+          <button class="faq-q" type="button" aria-expanded="false">
+            订单进度可以查询吗？
+            <span class="faq-plus" aria-hidden="true">＋</span>
           </button>
-
-          <div class="faq-a">
-
-            <div>
-
-              <p>
-                输入卡密和账号 AT、确认账号后，
-                正常情况下充值后约 2–5 分钟到账，
-                实际时间以实时页面和订单状态为准。
-              </p>
-
-            </div>
-
-          </div>
-
+          <div class="faq-a"><div><p>可以，付款、充值和交付状态都能在订单页查询。</p></div></div>
         </div>
 
-
-        <!-- 06 -->
         <div class="faq-item">
-
-          <button
-            class="faq-q"
-            type="button"
-            aria-expanded="false"
-          >
-
-            会不会封号？
-
-            <span
-              class="faq-plus"
-              aria-hidden="true"
-            >
-              ＋
-            </span>
-
+          <button class="faq-q" type="button" aria-expanded="false">
+            开通失败怎么办？
+            <span class="faq-plus" aria-hidden="true">＋</span>
           </button>
-
-          <div class="faq-a">
-
-            <div>
-
-              <p>
-                账号是否受限由 OpenAI 的风控和使用条款决定。
-                请遵守官方使用条款，反代、破限等违规使用可能触发风控或封号。
-              </p>
-
-            </div>
-
-          </div>
-
+          <div class="faq-a"><div><p>保留订单信息并联系客服核验，核实后按售后规则处理。</p></div></div>
         </div>
-
-
-        <!-- 07 -->
-        <div class="faq-item">
-
-          <button
-            class="faq-q"
-            type="button"
-            aria-expanded="false"
-          >
-
-            能退款吗？多久到账？
-
-            <span
-              class="faq-plus"
-              aria-hidden="true"
-            >
-              ＋
-            </span>
-
-          </button>
-
-          <div class="faq-a">
-
-            <div>
-
-              <p>
-                未充值、未到账可以申请退款；
-                已经充值并到账后不支持退款。
-                质保订阅如符合售后规则，
-                按剩余天数核算退款。
-                正常情况下充值后约 2–5 分钟到账。
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">账号 AT 是什么？安全吗？<span class="faq-plus" aria-hidden="true">＋</span></button><div class="faq-a"><div><p>AT 是 ChatGPT 账号的访问令牌，持有者能在有效期内以你的账号身份操作，所以只在本站开通页填写，不要发给任何人或贴到群里。开通完成后，可在 ChatGPT 设置的安全选项中退出所有设备登录，进一步降低风险（以 OpenAI 官方界面为准）。</p></div></div></div>
-
-        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">ChatGPT Plus 有免费试用吗？<span class="faq-plus" aria-hidden="true">＋</span></button><div class="faq-a"><div><p>目前没有任何人都能随时开通的常设免费试用，OpenAI 只偶尔面向特定人群或地区做限时活动，是否可用以你登录后的结算页为准。详见 <a href="/chatgpt-plus-free-trial">免费试用说明</a>
-        <a href="/chatgpt-plus-faq">常见问题大全</a>
-        <a href="/chatgpt-daichong-safe">代充靠谱吗</a>。</p></div></div></div>
-
-        <!-- 08 -->
-        <div class="faq-item">
-
-          <button
-            class="faq-q"
-            type="button"
-            aria-expanded="false"
-          >
-
-            开通不成功怎么办？
-
-            <span
-              class="faq-plus"
-              aria-hidden="true"
-            >
-              ＋
-            </span>
-
-          </button>
-
-          <div class="faq-a">
-
-            <div>
-
-              <p>
-                保留订单信息并联系客服核验；
-                开通失败经核验，
-                符合售后规则时按规则处理，
-                可联系客服。
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
 
       </div>
 
@@ -4999,7 +4781,7 @@ svg{
 
             <div>
               <strong>03</strong>
-              约 2–5 分钟
+              约 1–3 分钟
             </div>
 
             <div>
@@ -6608,11 +6390,10 @@ svg{
      FLOW STORY
      
      Desktop:
-       Scroll drives 01 → 04
+       The left list and right SVG share the same four node positions.
 
      Mobile:
-       No giant scroll placeholder.
-       Enter section → 01 → 02 → 03 → 04
+       No giant scroll placeholder; steps advance in sequence.
      ========================================================= */
 
   (function(){
@@ -6926,6 +6707,12 @@ svg{
         note.textContent =
           stateText[index];
 
+        if(!reduceMotion){
+          note.classList.remove('is-updating');
+          void note.getBBox();
+          note.classList.add('is-updating');
+        }
+
       }
 
 
@@ -7103,7 +6890,7 @@ svg{
         1 -
         Math.exp(
           -dt *
-          (reduceMotion ? 24 : 5.2)
+          (reduceMotion ? 24 : 11.5)
         );
 
 
@@ -7122,15 +6909,8 @@ svg{
 
 
       const index =
-        Math.min(
-          3,
-          Math.floor(
-            clamp(
-              (smooth + .001) * 4,
-              0,
-              3.999
-            )
-          )
+        Math.round(
+          clamp(smooth,0,1) * 3
         );
 
 
@@ -7233,9 +7013,8 @@ svg{
         smooth = raw;
 
         paintStep(
-          Math.min(
-            3,
-            Math.floor(raw * 4)
+          Math.round(
+            clamp(raw,0,1) * 3
           )
         );
 
@@ -7539,7 +7318,7 @@ svg{
 
 
             const ratio =
-              (index + .48) / 4;
+              index / 3;
 
 
             window.scrollTo({
