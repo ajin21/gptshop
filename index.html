@@ -12,13 +12,13 @@
 <meta name="robots" content="index,follow">
 <meta name="format-detection" content="telephone=no">
 
-<link rel="canonical" href="https://aixiaogu.com/">
+<link rel="canonical" href="https://xiaogugpt.top/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI 小古">
 <meta property="og:title" content="AI 小古｜ChatGPT Plus / Pro 国内开通，开通到本人账号">
 <meta property="og:description" content="官方 ChatGPT 订阅权益，开通到本人账号，订单可查，不提交登录密码等凭据。">
-<meta property="og:url" content="https://aixiaogu.com/">
+<meta property="og:url" content="https://xiaogugpt.top/">
 <meta property="og:locale" content="zh_CN">
 
 <meta name="twitter:card" content="summary_large_image">
@@ -3105,6 +3105,644 @@ svg{
 .footer-col b{display:block;margin-bottom:6px}
 @media(max-width:1060px){.footer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.footer-brand{grid-column:1/-1}}
 @media(max-width:720px){.footer-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 12px}.footer-brand{grid-column:1/-1}.footer-col a{display:flex;align-items:center;margin-top:0;font-size:12.5px;line-height:1.35}}
+
+
+/* =========================================================
+   HOLO-INSPIRED PRICING CARDS
+   参考 holo-reverse 的卡片倾斜、局部反光与薄层高光；
+   不引入原站素材、彩带或高负载物理模拟。
+   ========================================================= */
+#products .pricing-row{
+  perspective:1600px;
+}
+
+#products .plan-col{
+  --shine-x:50%;
+  --shine-y:18%;
+  --tilt-x:0deg;
+  --tilt-y:0deg;
+  --lift:0px;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  transform-style:preserve-3d;
+  transform:perspective(1150px)
+    rotateX(var(--tilt-y))
+    rotateY(var(--tilt-x))
+    translate3d(0,var(--lift),0);
+  transform-origin:center center;
+  border:1px solid #d8e1d5;
+  border-radius:22px;
+  background:#fff;
+  box-shadow:
+    0 9px 24px rgba(37,53,40,.045),
+    inset 0 1px 0 rgba(255,255,255,.94);
+  transition:
+    transform .46s cubic-bezier(.23,1,.32,1),
+    box-shadow .42s cubic-bezier(.23,1,.32,1),
+    border-color .35s ease,
+    background .35s ease;
+  will-change:transform;
+}
+
+/* 反光只在卡片表面，不压住文字；默认极淡，鼠标经过才显现 */
+#products .plan-col::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:.012;
+  background:
+    radial-gradient(
+      360px circle at var(--shine-x) var(--shine-y),
+      rgba(220,238,199,.42),
+      rgba(232,239,226,.20) 34%,
+      transparent 68%
+    );
+  background-size:auto;
+  background-position:center;
+  transition:opacity .35s ease;
+}
+
+/* 一条很细的卡片压边高光，避免整圈装饰边框 */
+#products .plan-col::after{
+  content:"";
+  position:absolute;
+  z-index:3;
+  top:0;
+  left:13%;
+  right:13%;
+  height:1px;
+  pointer-events:none;
+  opacity:.58;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(154,181,132,.42) 50%,
+    transparent
+  );
+  transition:opacity .35s ease;
+}
+
+#products .plan-col > *{
+  position:relative;
+  z-index:1;
+  transform:translateZ(3px);
+}
+
+#products .plan-col:hover,
+#products .plan-col:focus-within{
+  --lift:-2px;
+  border-color:#cbd8c4;
+  box-shadow:
+    0 15px 32px rgba(36,54,39,.075),
+    0 3px 9px rgba(36,54,39,.035),
+    inset 0 1px 0 rgba(255,255,255,.98);
+}
+
+#products .plan-col:hover::before,
+#products .plan-col:focus-within::before{
+  opacity:.30;
+}
+
+#products .plan-col:hover::after,
+#products .plan-col:focus-within::after{
+  opacity:1;
+}
+
+/* 主推 Plus 改成浅色微暖底，不再用整块深色压住页面 */
+#products .plan-col.featured{
+  border-color:#c8d9b6;
+  background:#fbfdf8;
+  box-shadow:
+    0 10px 27px rgba(77,105,51,.065),
+    inset 0 1px 0 rgba(255,255,255,.98);
+}
+
+#products .plan-col.featured:hover,
+#products .plan-col.featured:focus-within{
+  border-color:#adc795;
+  box-shadow:
+    0 16px 34px rgba(77,105,51,.09),
+    0 3px 10px rgba(36,54,39,.035),
+    inset 0 1px 0 rgba(255,255,255,.98);
+}
+
+/* 覆盖旧版深色主推卡的文字与图标配色 */
+#products .plan-col.featured .plan-icon{
+  color:#587443;
+  border-color:#d7e3ca;
+  background:#f0f6e8;
+}
+
+#products .plan-col.featured .plan-head h3,
+#products .plan-col.featured .plan-price .number{
+  color:#243420;
+}
+
+#products .plan-col.featured .plan-price .currency,
+#products .plan-col.featured .plan-price .unit{
+  color:#637b54;
+}
+
+#products .plan-col.featured .official-plan-badge{
+  border-color:#cadbbd;
+  background:#f1f7e9;
+  color:#4e693b;
+}
+
+#products .plan-col.featured .plan-original{
+  border-color:#dfe8d8;
+  background:#f1f6ed;
+}
+
+#products .plan-col.featured .plan-original span{
+  color:#5c695f;
+}
+
+#products .plan-col.featured .plan-original strong{
+  color:#48584d;
+}
+
+#products .plan-col.featured .plan-desc{
+  color:#56655c;
+}
+
+#products .plan-col.featured .plan-lines li{
+  color:#536158;
+  border-bottom-color:#e3e9e2;
+}
+
+#products .plan-col.featured .plan-lines li::before{
+  border-color:#d3dfce;
+  background:#f7faf4;
+}
+
+#products .plan-col.featured .plan-lines li::after{
+  border-color:#769059;
+}
+
+#products .plan-col.featured .plan-note{
+  color:#5c695f;
+}
+
+/* 购买按钮形成轻重关系：主推款保留浅绿实心，其余采用浅底描边 */
+#products .plan-col:not(.featured) .plan-bottom .cta.dark{
+  color:#3e5336;
+  border:1px solid #dce7d5;
+  background:linear-gradient(180deg,#fbfdf9,#edf4e8);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+#products .plan-col:not(.featured) .plan-bottom .cta.dark:hover{
+  color:#2e4328;
+  border-color:#c9dbbd;
+  background:#e7f0df;
+}
+
+#products .plan-col.featured .plan-bottom .cta.primary{
+  border-color:#cfe49b;
+  background:linear-gradient(180deg,#e7f5bd,#d9f093);
+  color:#2d421e;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72);
+}
+
+#products .plan-col .plan-icon{
+  transition:transform .5s cubic-bezier(.23,1,.32,1),box-shadow .35s ease;
+}
+
+#products .plan-col:hover .plan-icon,
+#products .plan-col:focus-within .plan-icon{
+  transform:translateY(-1px);
+  box-shadow:0 3px 8px rgba(76,101,58,.055);
+}
+
+#products .plan-col .plan-bottom .cta{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+#products .plan-col .plan-bottom .cta::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  top:-60%;
+  bottom:-60%;
+  left:-42%;
+  width:28%;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+  transform:translateX(-180%) skewX(-22deg);
+  transition:transform .72s cubic-bezier(.23,1,.32,1);
+}
+
+#products .plan-col:hover .plan-bottom .cta::after,
+#products .plan-col:focus-within .plan-bottom .cta::after{
+  transform:translateX(650%) skewX(-22deg);
+}
+
+@media (hover:none), (prefers-reduced-motion:reduce){
+  #products .plan-col{
+    transform:none!important;
+    transition:box-shadow .2s ease,border-color .2s ease;
+    will-change:auto;
+  }
+  #products .plan-col::before,
+  #products .plan-col::after{
+    opacity:0!important;
+  }
+  #products .plan-col:hover,
+  #products .plan-col:focus-within{
+    transform:none!important;
+  }
+  #products .plan-col .plan-icon,
+  #products .plan-col .plan-bottom .cta::after{
+    transition:none!important;
+  }
+}
+
+
+/* =========================================================
+   REFINEMENT LAYER · readable first, effects second
+   保留原页面结构，仅校准文字对比、手机排版与动效强度。
+   ========================================================= */
+:root{
+  --ink:#19231d;
+  --ink-2:#27352c;
+  --muted:#48564d;
+  --faint:#5a685f;
+  --reading-ink:#1b241e;
+  --reading-body:#435248;
+  --reading-soft:#59675e;
+  --line:#d1dbd0;
+  --line-soft:#e1e8df;
+}
+
+body{color:var(--reading-ink)}
+.eyebrow{color:#536157}
+.section-head p,
+.hero-v3 .hero-lede,
+.faq-intro>p,
+.faq-a p,
+.final-main p,
+.final-side p,
+.footer-brand p,
+.footer-col a,
+.footer-bottom{color:#4b5a50}
+.ap-item small,
+.plan-desc,
+.plan-lines li,
+.plan-note,
+.comparison-note,
+.channel-legend,
+.mini-meta div{color:#4b5a50}
+.plan-lines li,.plan-desc{font-size:13.4px}
+.plan-note,.comparison-note{font-size:12.2px}
+.ap-item small{font-size:12px}
+.faq-q{color:#26332a}
+.faq-a p{font-size:13.4px}
+.channel-table tbody td{color:#4d5b52}
+.table-scroll-hint{display:none}
+.s-cap{fill:#78847b}
+.s-note{fill:#4d5c51}
+.s-result-step{fill:#758178}
+.flow-step{color:#526157}
+.flow-step .desc{opacity:.94}
+.flow-step.active{border-color:#d0dccd;background:rgba(255,255,255,.96)}
+.flow-visual{border-color:#cbd7c9;box-shadow:0 9px 25px rgba(38,55,43,.04)}
+
+/* 价格卡片：减少彩膜感，保留桌面端轻微的鼠标跟随。 */
+#products .plan-col::before{opacity:0}
+#products .plan-col:hover::before,
+#products .plan-col:focus-within::before{opacity:.10}
+#products .plan-col::after{opacity:0}
+#products .plan-col:hover::after,
+#products .plan-col:focus-within::after{opacity:.18}
+#products .plan-col > *{transform:translateZ(2px)}
+#products .plan-col .plan-bottom .cta::after{width:20%;opacity:.55}
+#products .plan-col .plan-icon{transition:transform .32s var(--ease),box-shadow .32s var(--ease)}
+#products .plan-col:hover .plan-icon,
+#products .plan-col:focus-within .plan-icon{transform:translateY(-1px)}
+#products .plan-col .plan-bottom .cta:active{transform:translateY(1px) scale(.99)}
+
+@media(max-width:720px){
+  .container,.hero-v3-inner{width:calc(100% - 28px)}
+  .section{padding:58px 0}
+  .section-head{margin-bottom:22px}
+  .section-head p{font-size:14px;line-height:1.78}
+
+  /* 手机上把“官方正版”放到套餐名下方，避免挤压标题。 */
+  .plan-top{padding:20px 18px 18px}
+  .plan-head{
+    display:grid;
+    grid-template-columns:40px minmax(0,1fr);
+    grid-template-rows:auto auto;
+    align-items:center;
+    gap:5px 10px;
+    min-height:0;
+  }
+  .plan-icon{grid-column:1;grid-row:1 / span 2;width:40px;height:40px}
+  .plan-name{grid-column:2;grid-row:1;min-width:0}
+  .plan-head h3{font-size:18px;line-height:1.25;letter-spacing:-.035em}
+  .official-plan-badge{
+    grid-column:2;grid-row:2;justify-self:start;
+    height:21px;margin-top:1px;padding:0 8px;font-size:10.5px;
+  }
+  .plan-price-block{margin-top:17px}
+  .plan-price-row{flex-wrap:wrap;align-items:baseline;gap:9px 12px}
+  .plan-price .number{font-size:46px}
+  .plan-original{margin:0;padding:5px 9px;gap:6px;border-radius:8px}
+  .plan-original span,.plan-original strong{font-size:11.5px}
+  .plan-desc{margin-top:15px;font-size:13.2px;line-height:1.72}
+  .plan-lines li{min-height:49px;padding:12px 16px 12px 42px;font-size:13px;line-height:1.55}
+  .plan-lines li::before{left:16px}
+  .plan-lines li::after{left:21px}
+  .plan-bottom{padding:14px 18px 10px}
+  .plan-bottom .cta{height:49px;min-height:49px;font-size:13.5px}
+  .plan-note{min-height:42px;padding:0 16px 13px;font-size:12px;line-height:1.5}
+  .comparison-note{font-size:12px;line-height:1.65}
+
+  /* 四步区域：步骤说明更易读，动画维持原布局与横向轨道。 */
+  .flow-steps{gap:6px;margin-top:22px}
+  .flow-step{padding:13px 12px;grid-template-columns:38px minmax(0,1fr);gap:10px}
+  .flow-step b{font-size:14px}
+  .flow-step .desc{font-size:12.5px;line-height:1.62}
+  .flow-visual{height:clamp(270px,76vw,310px)!important;margin-top:2px!important}
+  .flow-svg{width:96%!important;height:96%!important}
+
+  /* 对比表不再把三列挤成窄条，改为可横滑的清晰表格。 */
+  .channel-scroll{overflow-x:auto!important;overscroll-behavior-x:contain}
+  .channel-table{min-width:650px!important;width:650px!important;table-layout:fixed!important}
+  .channel-table th,.channel-table td{padding:14px 13px!important;font-size:12.5px!important;line-height:1.6!important}
+  .channel-table thead th{font-size:12.5px!important}
+  .channel-table thead th:first-child,.channel-table tbody th{width:29%!important}
+  .channel-table tbody th{font-size:12.5px!important}
+  .channel-table tbody td{font-size:12.5px!important}
+  .channel-legend{font-size:11.8px;line-height:1.6}
+  .table-scroll-hint{display:flex;align-items:center;justify-content:flex-end;gap:7px;padding:9px 12px 2px;color:#526157;font-size:11.5px}
+  .table-scroll-hint span{font-size:15px;color:#5e7849}
+
+  /* FAQ 与正文提升字号，不以小字换取紧凑。 */
+  .faq-intro>p{font-size:13.6px;line-height:1.78}
+  .faq-q{font-size:14px;line-height:1.5;padding:18px 0}
+  .faq-a p{font-size:13px;line-height:1.78;padding-bottom:17px}
+  .checkitem b{font-size:12px}
+  .checkitem span{font-size:11.8px;line-height:1.5}
+  .final-main p,.final-side p{font-size:13px;line-height:1.75}
+  .footer-brand p,.footer-col a,.footer-bottom{font-size:12.5px;line-height:1.6}
+
+  /* 触屏端保留轻量按压反馈，不做悬停镭射。 */
+  #products .plan-col{transform:none!important;box-shadow:0 7px 20px rgba(37,53,40,.045)}
+  #products .plan-col::before,#products .plan-col::after{opacity:0!important}
+  #products .plan-col .plan-icon{transform:none!important;box-shadow:none!important}
+  #products .plan-col .plan-bottom .cta::after{display:none}
+  #products .plan-col .plan-bottom .cta:active{transform:scale(.985)}
+}
+
+@media(max-width:380px){
+  .hero-v3 h1{font-size:2.3rem}
+  .plan-top{padding:18px 15px 16px}
+  .plan-head h3{font-size:17px}
+  .plan-price .number{font-size:43px}
+  .plan-price-row{gap:8px 9px}
+  .plan-lines li{font-size:12.6px;padding-right:13px}
+  .plan-bottom{padding-inline:15px}
+  .plan-note{padding-inline:13px}
+  .flow-visual{height:265px!important}
+}
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  #products .plan-col{transition:transform .58s cubic-bezier(.2,.75,.25,1),box-shadow .4s ease,border-color .35s ease}
+}
+
+/* =========================================================
+   FINAL CARD MOTION · a little more character, still restrained
+   Desktop: visible 3D tilt + a tiny cursor glint. Mobile: tactile press only.
+   ========================================================= */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  #products .plan-col{
+    transform:perspective(1100px)
+      rotateX(var(--tilt-y,0deg))
+      rotateY(var(--tilt-x,0deg))
+      translate3d(0,var(--lift,0px),0);
+    transition:
+      transform .36s cubic-bezier(.2,.78,.22,1),
+      box-shadow .42s cubic-bezier(.2,.78,.22,1),
+      border-color .32s ease;
+  }
+  #products .plan-col::before{
+    background:
+      radial-gradient(250px circle at var(--shine-x,50%) var(--shine-y,18%),
+        rgba(255,255,255,.62) 0%,
+        rgba(225,239,204,.36) 28%,
+        rgba(213,229,195,.14) 48%,
+        transparent 72%),
+      linear-gradient(118deg,
+        transparent 27%,
+        rgba(255,255,255,.18) 47%,
+        rgba(219,237,199,.13) 53%,
+        transparent 68%);
+    mix-blend-mode:screen;
+    opacity:0;
+    transition:opacity .18s ease;
+  }
+  #products .plan-col.is-pointing::before{opacity:.43}
+  #products .plan-col::after{
+    content:"";
+    position:absolute;
+    z-index:4;
+    left:var(--shine-x,50%);
+    top:var(--shine-y,18%);
+    right:auto;
+    width:15px;
+    height:15px;
+    border:0;
+    border-radius:50%;
+    pointer-events:none;
+    background:
+      radial-gradient(circle,rgba(255,255,255,.96) 0 1px,transparent 2px),
+      linear-gradient(90deg,transparent 43%,rgba(255,255,255,.88) 50%,transparent 57%),
+      linear-gradient(0deg,transparent 43%,rgba(255,255,255,.78) 50%,transparent 57%);
+    filter:drop-shadow(0 0 3px rgba(170,196,145,.52));
+    opacity:0;
+    transform:translate(-50%,-50%) rotate(45deg) scale(.55);
+    transition:opacity .16s ease,transform .2s cubic-bezier(.2,.8,.2,1);
+  }
+  #products .plan-col.is-pointing::after{
+    opacity:.76;
+    transform:translate(-50%,-50%) rotate(45deg) scale(1);
+  }
+  #products .plan-col:hover,
+  #products .plan-col:focus-within{
+    --lift:-2px;
+  }
+  #products .plan-col.featured.is-pointing::before{opacity:.48}
+}
+
+@media (hover:none), (prefers-reduced-motion:reduce){
+  #products .plan-col::before,
+  #products .plan-col::after{display:none!important}
+  #products .plan-col:active{transform:scale(.994)!important}
+}
+
+
+
+/* =========================================================
+   PRICING CTA STABILITY
+   购买按钮保持固定位置与尺寸：悬停只改变颜色/阴影，不上下跳、不推挤箭头。
+   卡片整体仍可进行桌面 3D 倾斜，按钮作为卡面内容稳定呈现。
+   ========================================================= */
+#products .plan-bottom{
+  display:flex;
+  align-items:stretch;
+  padding-top:15px;
+  padding-bottom:12px;
+}
+
+#products .plan-bottom .cta{
+  width:100%;
+  min-height:50px;
+  height:50px;
+  box-sizing:border-box;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  position:relative;
+  flex:1 1 auto;
+  padding:0 18px;
+  border-width:1px;
+  border-style:solid;
+  border-radius:11px;
+  font-size:13.5px;
+  font-weight:850;
+  line-height:1;
+  white-space:nowrap;
+  transform:none !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.38);
+  transition:
+    background-color .2s ease,
+    border-color .2s ease,
+    color .2s ease,
+    box-shadow .2s ease,
+    filter .16s ease;
+}
+
+/* 主推套餐：清晰的浅绿主按钮，保持原有品牌色 */
+#products .plan-col.featured .plan-bottom .cta.primary{
+  color:#263b1c;
+  border-color:#bdd889;
+  background:linear-gradient(180deg,#e5f4b7 0%,#d5ee91 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.78),
+    0 2px 5px rgba(92,125,53,.08);
+}
+
+#products .plan-col.featured .plan-bottom .cta.primary:hover{
+  color:#1f3516;
+  border-color:#aeca78;
+  background:linear-gradient(180deg,#deefaa 0%,#cce681 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.74),
+    0 4px 10px rgba(92,125,53,.12);
+}
+
+/* Pro 套餐：深石墨绿按钮。悬停保持同一色系，只略微提亮并增加边缘反馈。 */
+#products .plan-col:not(.featured) .plan-bottom .cta.dark{
+  color:#fff;
+  border-color:#303a32;
+  background:linear-gradient(180deg,#252e27 0%,#1e2720 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    0 2px 6px rgba(24,34,27,.12);
+}
+
+#products .plan-col:not(.featured) .plan-bottom .cta.dark:hover,
+#products .plan-col:not(.featured) .plan-bottom .cta.dark:focus-visible{
+  color:#fff;
+  border-color:#7d9272;
+  background:linear-gradient(180deg,#2c362e 0%,#232d25 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.19),
+    0 0 0 2px rgba(172,199,137,.11),
+    0 5px 13px rgba(24,34,27,.19);
+}
+
+/* 卡片按钮不使用全站 CTA 的上浮动画，箭头也不单独位移 */
+#products .plan-bottom .cta:hover,
+#products .plan-bottom .cta:focus-visible,
+#products .plan-bottom .cta:active{
+  transform:none !important;
+}
+
+#products .plan-bottom .cta .arr,
+#products .plan-bottom .cta:hover .arr,
+#products .plan-bottom .cta:focus-visible .arr,
+#products .plan-bottom .cta:active .arr{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:14px;
+  min-width:14px;
+  margin:0;
+  transform:none !important;
+  transition:none !important;
+  line-height:1;
+}
+
+/* CTA 不再有扫光动画，卡面本身的光点已经足够 */
+#products .plan-bottom .cta::after{
+  display:none !important;
+  content:none !important;
+}
+
+#products .plan-bottom .cta:focus-visible{
+  outline:3px solid rgba(105,139,73,.34);
+  outline-offset:3px;
+}
+
+#products .plan-bottom .cta:active{
+  filter:brightness(.96);
+}
+
+@media(max-width:720px){
+  #products .plan-bottom{
+    padding:14px 18px 11px;
+  }
+  #products .plan-bottom .cta{
+    min-height:51px;
+    height:51px;
+    border-radius:12px;
+    font-size:14px;
+    transform:none !important;
+  }
+  #products .plan-bottom .cta:active{
+    filter:brightness(.96);
+  }
+}
+
+@media(max-width:380px){
+  #products .plan-bottom{padding-inline:15px}
+  #products .plan-bottom .cta{min-height:50px;height:50px}
+}
+
+
+
+/* 鼠标停留在购买按钮上时，卡片回正并固定，按钮不会追着指针移动。 */
+#products .plan-col.is-cta-hover,
+#products .plan-col:focus-within{
+  --tilt-x:0deg;
+  --tilt-y:0deg;
+  --lift:0px;
+}
+#products .plan-col.is-cta-hover::before,
+#products .plan-col.is-cta-hover::after{
+  opacity:0 !important;
+}
+
 </style>
 </head>
 
@@ -4579,6 +5217,7 @@ svg{
 
         </div>
 
+        <div class="table-scroll-hint" aria-hidden="true">左右滑动，查看完整对比 <span>↔</span></div>
 
         <div class="channel-legend">
 
@@ -6516,7 +7155,7 @@ svg{
 
       for(
         let i=0;
-        i<22;
+        i<16;
         i++
       ){
 
@@ -6579,11 +7218,11 @@ svg{
           el:group,
 
           offset:
-            (i + rand() * .8) / 22,
+            (i + rand() * .8) / 16,
 
           alpha:
-            .40 +
-            rand() * .34,
+            .30 +
+            rand() * .25,
 
           wob:
             rand() * Math.PI * 2,
@@ -6787,7 +7426,7 @@ svg{
       const start =
         performance.now();
 
-      const duration = 620;
+      const duration = 680;
 
 
       function tick(now){
@@ -6922,12 +7561,12 @@ svg{
           phase +
           dt *
           (
-            .18 +
+            .13 +
             Math.min(
               Math.abs(
                 raw - smooth
-              ) * 10,
-              .45
+              ) * 7,
+              .30
             )
           )
         ) % 1;
@@ -7153,7 +7792,7 @@ svg{
             showMobileStep(index);
 
           },
-          1500
+          1650
         );
 
     }
@@ -7539,6 +8178,88 @@ svg{
   })();
 
 })();
+
+
+/* =========================================================
+   PRICING CARD FOIL / POINTER TILT
+   仅桌面精细指针启用；不跟随滚动，不运行常驻动画循环。
+   ========================================================= */
+(function(){
+  const cards = document.querySelectorAll('#products .plan-col');
+  const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(!cards.length || !finePointer || reducedMotion) return;
+
+  const clamp = (value,min,max) => Math.max(min,Math.min(max,value));
+
+  cards.forEach(card => {
+    let frame = 0;
+    let pointX = .5;
+    let pointY = .18;
+
+    const paint = () => {
+      frame = 0;
+      /* 总旋转约 5.6° × 4.6°：看得出立体感，但不会像游戏卡牌一样翻飞。 */
+      const tiltX = (pointX - .5) * 5.6;
+      const tiltY = (.5 - pointY) * 4.6;
+      card.style.setProperty('--shine-x', (pointX * 100).toFixed(1) + '%');
+      card.style.setProperty('--shine-y', (pointY * 100).toFixed(1) + '%');
+      card.style.setProperty('--tilt-x', tiltX.toFixed(2) + 'deg');
+      card.style.setProperty('--tilt-y', tiltY.toFixed(2) + 'deg');
+    };
+
+    const move = event => {
+      if(event.pointerType !== 'mouse') return;
+
+      /* 鼠标进入购买按钮时暂停卡片倾斜，避免按钮跟着卡面偏移。 */
+      const onPurchaseButton =
+        event.target instanceof Element &&
+        event.target.closest('.plan-bottom .cta');
+
+      if(onPurchaseButton){
+        if(frame){
+          cancelAnimationFrame(frame);
+          frame = 0;
+        }
+        card.classList.remove('is-pointing');
+        card.classList.add('is-cta-hover');
+        pointX = .5;
+        pointY = .18;
+        card.style.setProperty('--shine-x','50%');
+        card.style.setProperty('--shine-y','18%');
+        card.style.setProperty('--tilt-x','0deg');
+        card.style.setProperty('--tilt-y','0deg');
+        return;
+      }
+
+      card.classList.remove('is-cta-hover');
+      const rect = card.getBoundingClientRect();
+      if(!rect.width || !rect.height) return;
+      pointX = clamp((event.clientX - rect.left) / rect.width,0,1);
+      pointY = clamp((event.clientY - rect.top) / rect.height,0,1);
+      card.classList.add('is-pointing');
+      if(!frame) frame = requestAnimationFrame(paint);
+    };
+
+    const reset = () => {
+      if(frame){
+        cancelAnimationFrame(frame);
+        frame = 0;
+      }
+      card.classList.remove('is-pointing','is-cta-hover');
+      card.style.setProperty('--shine-x','50%');
+      card.style.setProperty('--shine-y','18%');
+      card.style.setProperty('--tilt-x','0deg');
+      card.style.setProperty('--tilt-y','0deg');
+    };
+
+    card.addEventListener('pointermove',move,{passive:true});
+    card.addEventListener('pointerleave',reset,{passive:true});
+    card.addEventListener('pointercancel',reset,{passive:true});
+  });
+})();
+
 </script>
 
 </body>
