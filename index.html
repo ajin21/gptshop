@@ -1990,7 +1990,7 @@ svg{
 .modal-dialog{
   position:relative;
   width:100%;
-  max-width:470px;
+  max-width:560px;
   padding:30px;
   border-radius:23px;
   background:#fff;
@@ -2043,17 +2043,22 @@ svg{
 
 .modal-options{
   display:grid;
-  gap:9px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  gap:12px;
 }
 
 .modal-option{
   width:100%;
+  min-width:0;
+  min-height:164px;
   display:flex;
-  align-items:center;
-  gap:13px;
-  padding:15px 16px;
+  flex-direction:column;
+  align-items:stretch;
+  gap:12px;
+  padding:16px;
   border:1px solid var(--line);
-  border-radius:15px;
+  border-radius:16px;
   background:#fff;
   text-align:left;
   transition:
@@ -2070,33 +2075,43 @@ svg{
 }
 
 .modal-option.wx{
-  background:
-    linear-gradient(
-      180deg,
-      #f3f9ea,
-      #fff
-    );
-  border-color:#d7e7c3;
+  background:linear-gradient(155deg,#f4f9ed 0%,#fff 72%);
+  border-color:#dce8d0;
+}
+
+.mo-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .mo-icon{
-  width:42px;
-  height:44px;
+  width:36px;
+  height:36px;
   flex:none;
   display:grid;
   place-items:center;
-  border-radius:12px;
-  background:#f3f6f1;
+  border-radius:11px;
+  background:#f1f5ee;
   color:#60784b;
 }
 
 .modal-option.wx .mo-icon{
-  background:#e6f3d2;
+  background:#e8f2dc;
 }
 
 .mo-icon svg{
-  width:21px;
-  height:21px;
+  width:19px;
+  height:19px;
+}
+
+.mo-channel-tag{
+  color:#859087;
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.09em;
+  white-space:nowrap;
 }
 
 .mo-body{
@@ -2106,43 +2121,307 @@ svg{
 
 .mo-body b{
   display:block;
-  font-size:12.7px;
+  color:#202a22;
+  font-size:13px;
   font-weight:900;
+  letter-spacing:-.02em;
 }
 
 .mo-body span{
   display:block;
-  margin-top:3px;
-  color:#737e76;
-  font-size:11px;
+  margin-top:4px;
+  color:#788279;
+  font-size:10.5px;
   line-height:1.5;
 }
 
-.wx-id-inline{
-  display:inline-flex!important;
-  margin-top:6px!important;
-  padding:4px 8px;
-  border-radius:7px;
-  background:#e6f3d2;
-  color:#38521d!important;
-  font:900 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace!important;
+.mo-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  min-height:27px;
+  padding-top:9px;
+  border-top:1px solid #edf0eb;
 }
 
-.mo-arrow{
-  color:#5c695f;
-  font-size:11px;
-  font-weight:900;
+.mo-action{
+  color:#536c40;
+  font-size:10.5px;
+  font-weight:850;
   white-space:nowrap;
 }
 
-.modal-foot{
-  margin-top:18px;
-  padding-top:14px;
-  border-top:1px solid var(--line-soft);
+.modal-option.wx .mo-action{
+  color:#607b46;
+}
+
+.wx-id-inline{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-width:0;
+  padding:5px 8px;
+  border-radius:7px;
+  background:#e8f2dc;
+  color:#38521d;
+  font:850 10.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  white-space:nowrap;
+}
+
+.wx-id-inline em{
+  color:#758768;
+  font:700 9px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-style:normal;
+}
+
+/* 老客户推荐礼：紧凑、轻量的推荐信息区 */
+.referral-reward{
+  --referral-ink:#27352a;
+  --referral-muted:#748174;
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  margin-top:13px;
+  padding:12px 14px 11px;
+  overflow:hidden;
+  border:1px solid #e5ebdf;
+  border-radius:12px;
+  background:linear-gradient(112deg,#f8faf6 0%,#f5f8f2 58%,#fafbf8 100%);
+  color:var(--referral-ink);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+.referral-reward::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:112px;
+  height:112px;
+  right:-66px;
+  top:-78px;
+  border:1px solid rgba(130,157,105,.13);
+  border-radius:50%;
+  box-shadow:0 0 0 11px rgba(130,157,105,.025),0 0 0 23px rgba(130,157,105,.018);
+  pointer-events:none;
+}
+
+.referral-kicker{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  min-width:0;
+  color:#879380;
+  font-size:8.5px;
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:.095em;
+}
+
+.referral-kicker i{
+  color:#bdc8b5;
+  font-style:normal;
+}
+
+.referral-kicker b{
+  color:#65775b;
+  font-size:9.5px;
+  font-weight:800;
+  letter-spacing:.025em;
+}
+
+.referral-body{
+  display:block;
+  min-width:0;
+  padding-right:96px;
+}
+
+.referral-flow{
+  display:flex;
+  align-items:center;
+  flex-wrap:nowrap;
+  gap:8px;
+  min-width:0;
+  color:#566451;
+  font-size:12.2px;
+  line-height:1.5;
+  font-weight:550;
+  letter-spacing:0;
+  white-space:nowrap;
+}
+
+.referral-step{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  min-width:0;
+  white-space:nowrap;
+}
+
+.referral-index{
+  display:inline-grid;
+  place-items:center;
+  width:18px;
+  height:18px;
+  flex:none;
+  border:1px solid #dce7d4;
+  border-radius:6px;
+  background:linear-gradient(145deg,#fff 0%,#edf4e6 100%);
+  color:#668151;
+  font:800 8.7px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:-.035em;
+  box-shadow:0 1px 2px rgba(63,83,52,.045);
+}
+
+.referral-step-label{
+  font-weight:550;
+  white-space:nowrap;
+}
+
+.referral-arrow{
+  flex:none;
+  color:#a2b294;
+  font:600 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+
+/* 价格相对整张推荐礼卡片定位，不跟随左侧流程的行高 */
+.referral-price{
+  box-sizing:border-box;
+  position:absolute;
+  top:50%;
+  right:14px;
+  transform:translateY(-50%);
+  width:78px;
+  min-width:0;
+  min-height:48px;
+  display:grid;
+  grid-template-rows:auto auto;
+  place-content:center;
+  justify-items:center;
+  padding:5px 4px 4px;
+  border:1px solid #e1e9d9;
+  border-radius:9px;
+  background:linear-gradient(155deg,rgba(247,250,243,.98),rgba(235,243,227,.92));
   text-align:center;
-  color:#6f7b73;
-  font-size:11px;
-  line-height:1.6;
+  font-variant-numeric:tabular-nums;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.88),0 2px 7px rgba(71,94,58,.035);
+}
+
+.referral-price strong{
+  display:block;
+  margin:0;
+  color:#52713f;
+  font-size:19px;
+  line-height:1.08;
+  font-weight:750;
+  letter-spacing:-.045em;
+  white-space:nowrap;
+}
+
+.referral-price small{
+  display:block;
+  margin-top:4px;
+  color:#788772;
+  font-size:8.2px;
+  line-height:1.2;
+  font-weight:550;
+  white-space:nowrap;
+}
+
+@media(max-width:560px){
+  .modal-options{grid-template-columns:1fr;gap:8px}
+  .modal-option{
+    min-height:82px;
+    display:grid;
+    grid-template-columns:36px minmax(0,1fr) auto;
+    align-items:center;
+    gap:10px;
+    padding:11px 12px;
+  }
+  .mo-top{display:contents}
+  .mo-icon{grid-column:1;grid-row:1;width:36px;height:36px}
+  .mo-channel-tag{display:none}
+  .mo-body{grid-column:2;grid-row:1}
+  .mo-body b{font-size:12.5px}
+  .mo-body span{font-size:10px;line-height:1.42}
+  .mo-bottom{
+    grid-column:3;
+    grid-row:1;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    justify-content:center;
+    gap:4px;
+    min-height:0;
+    padding:0;
+    border:0;
+  }
+  .mo-action{font-size:10px}
+  .wx-id-inline{padding:5px 6px;gap:5px;font-size:9.5px}
+  .wx-id-inline em{display:inline;font-size:8.5px}
+  .referral-reward{margin-top:11px;padding:11px 11px 10px;gap:8px;border-radius:11px}
+  .referral-kicker{font-size:7.8px;gap:5px}
+  .referral-kicker b{font-size:9px}
+  .referral-body{padding-right:83px}
+  /* 手机端仍按 01 → 02 → 03 横向阅读；每步内部上下排，避免挤成竖向流程 */
+  .referral-flow{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 10px minmax(0,1fr) 10px minmax(0,1fr);
+    align-items:center;
+    justify-items:stretch;
+    gap:2px;
+    font-size:10px;
+    line-height:1.35;
+    white-space:normal;
+  }
+  .referral-step{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    width:100%;
+    min-width:0;
+    white-space:normal;
+    text-align:center;
+  }
+  .referral-index{width:18px;height:18px;border-radius:6px;font-size:8.2px}
+  .referral-step-label{
+    display:block;
+    width:100%;
+    color:#566451;
+    font-size:9.4px;
+    line-height:1.28;
+    text-align:center;
+    white-space:normal;
+    overflow-wrap:anywhere;
+  }
+  .referral-arrow{
+    align-self:center;
+    justify-self:center;
+    margin:0;
+    line-height:1;
+    transform:none;
+    font-size:9px;
+  }
+  .referral-price{right:11px;width:69px;min-height:46px;padding:4px 3px}
+  .referral-price strong{font-size:18px}
+  .referral-price small{font-size:7.8px;margin-top:4px}
+}
+
+@media(max-width:360px){
+  .referral-reward{padding-left:10px;padding-right:10px}
+  .referral-body{padding-right:70px}
+  .referral-flow{grid-template-columns:minmax(0,1fr) 8px minmax(0,1fr) 8px minmax(0,1fr);gap:1px;font-size:9.4px}
+  .referral-step{gap:4px}
+  .referral-index{width:16px;height:16px;font-size:7.7px}
+  .referral-step-label{font-size:8.6px;line-height:1.25}
+  .referral-arrow{font-size:8px}
+  .referral-price{right:10px;width:60px;min-height:44px}
+  .referral-price strong{font-size:17px}
+  .referral-price small{font-size:7.4px}
 }
 
 
@@ -3097,7 +3376,7 @@ svg{
 
 .faq-a p{font-size:13.5px}.faq-q{font-size:14.5px}.faq-a a{color:var(--accent-deep);text-decoration:underline}
 .plan-lines li,.plan-desc{font-size:13px}
-.plan-note,.comparison-note,.final-main p,.final-side p,.mini-meta div,.mini-meta strong,.footer-brand p,.footer-col a,.footer-bottom,.modal-head p,.modal-foot,.mo-body span,.checkitem b,.checkitem span,.channel-legend{font-size:12.5px}
+.plan-note,.comparison-note,.final-main p,.final-side p,.mini-meta div,.mini-meta strong,.footer-brand p,.footer-col a,.footer-bottom,.modal-head p,.mo-body span,.checkitem b,.checkitem span,.channel-legend{font-size:12.5px}
 @media(max-width:720px){.channel-table th,.channel-table td,.channel-table thead th,.channel-table tbody th,.channel-table tbody td{font-size:12.5px!important}.faq-a p{font-size:13px}.ap-item small{font-size:12px}.flow-step .desc{font-size:12.5px}}
 
 /* 页脚：分栏 */
@@ -5677,12 +5956,11 @@ body{color:var(--reading-ink)}
       </div>
 
       <h3 id="modalTitle">
-        选择购买方式
+        选择购买渠道
       </h3>
 
       <p>
-        两种方式都可以，卡密内容一致。
-        推荐走卡网自助，付款后获取卡密。
+        想快速自助开通，或希望有人协助？选择适合你的方式即可。
       </p>
 
     </div>
@@ -5690,151 +5968,90 @@ body{color:var(--reading-ink)}
 
     <div class="modal-options">
 
-
-      <!-- 自助 -->
+      <!-- 卡网自助 -->
       <a
         class="modal-option"
         href="https://wzyp.cn/shop/xiaogu"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="前往卡网自助下单"
       >
-
-        <span class="mo-icon">
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-
-            <rect
-              x="3.4"
-              y="5"
-              width="17.2"
-              height="13"
-              rx="2.6"
-            />
-
-            <path d="M3.4 9.4h17.2"/>
-            <path d="M7.6 14.4h3"/>
-
-          </svg>
-
-        </span>
-
-
-        <div class="mo-body">
-
-          <b>
-            去卡网自助购买
-          </b>
-
-          <span>
-            打开购买页面，付款后自助获取卡密
+        <span class="mo-top">
+          <span class="mo-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.4" y="5" width="17.2" height="13" rx="2.6"/>
+              <path d="M3.4 9.4h17.2M7.6 14.4h3"/>
+            </svg>
           </span>
-
-        </div>
-
-
-        <span class="mo-arrow">
-          ↗
+          <span class="mo-channel-tag">SELF SERVICE</span>
         </span>
-
+        <span class="mo-body">
+          <b>卡网自助下单</b>
+          <span>在线付款 · 自助获取卡密</span>
+        </span>
+        <span class="mo-bottom">
+          <span class="mo-action">立即前往 ↗</span>
+        </span>
       </a>
 
-
-      <!-- 微信 -->
+      <!-- 微信客服 -->
       <button
         class="modal-option wx"
         type="button"
         data-copy-wx="JJJyt888"
+        aria-label="复制微信客服号 JJJyt888"
       >
-
-        <span class="mo-icon">
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-
-            <path
-              d="M9 4.6c4 0 7.2 2.7 7.2 6 0 .5-.06 1-.18 1.5.5.15.96.38 1.34.68 1.05.85 1.14 2.5 1.14 3.1 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6h-.6l-1.2 1.2-.8-.6-.8.6-1.2-1.2H9.2c-3.9 0-7-2.7-7-6s3.1-6 6.8-6z"
-              transform="translate(0,1)"
-            />
-
-            <circle
-              cx="6.5"
-              cy="11"
-              r=".9"
-              fill="currentColor"
-              stroke="none"
-            />
-
-            <circle
-              cx="11.5"
-              cy="11"
-              r=".9"
-              fill="currentColor"
-              stroke="none"
-            />
-
-            <circle
-              cx="14.5"
-              cy="14.5"
-              r=".75"
-              fill="currentColor"
-              stroke="none"
-            />
-
-            <circle
-              cx="18"
-              cy="14.5"
-              r=".75"
-              fill="currentColor"
-              stroke="none"
-            />
-
-          </svg>
-
-        </span>
-
-
-        <div class="mo-body">
-
-          <b>
-            加微信拿卡密
-          </b>
-
-          <span>
-            不方便自助购买时，加微信人工协助
+        <span class="mo-top">
+          <span class="mo-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 4.6c4 0 7.2 2.7 7.2 6 0 .5-.06 1-.18 1.5.5.15.96.38 1.34.68 1.05.85 1.14 2.5 1.14 3.1 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6h-.6l-1.2 1.2-.8-.6-.8.6-1.2-1.2H9.2c-3.9 0-7-2.7-7-6s3.1-6 6.8-6z" transform="translate(0,1)"/>
+              <circle cx="6.5" cy="11" r=".9" fill="currentColor" stroke="none"/>
+              <circle cx="11.5" cy="11" r=".9" fill="currentColor" stroke="none"/>
+              <circle cx="14.5" cy="14.5" r=".75" fill="currentColor" stroke="none"/>
+              <circle cx="18" cy="14.5" r=".75" fill="currentColor" stroke="none"/>
+            </svg>
           </span>
-
-          <span class="wx-id-inline">
-            JJJyt888
-          </span>
-
-        </div>
-
-
-        <span class="mo-arrow">
-          复制
+          <span class="mo-channel-tag">HUMAN SUPPORT</span>
         </span>
-
+        <span class="mo-body">
+          <b>微信客服人工协助</b>
+          <span>沟通套餐 · 协助下单与开通</span>
+        </span>
+        <span class="mo-bottom">
+          <span class="wx-id-inline">JJJyt888 <em>复制</em></span>
+        </span>
       </button>
 
     </div>
 
+    <section class="referral-reward" role="note" aria-label="老客户推荐礼：分享微信名片，好友成功购买，即可获得返利">
+      <div class="referral-kicker">
+        <span>CUSTOMER REFERRAL</span><i>·</i><b>老客户推荐礼</b>
+      </div>
 
-    <div class="modal-foot">
-      如需帮助可直接加微信，客服答疑。
-    </div>
+      <div class="referral-body">
+        <div class="referral-flow" aria-label="分享微信名片，好友成功购买，即可获得返利">
+          <div class="referral-step">
+            <span class="referral-index" aria-hidden="true">01</span>
+            <span class="referral-step-label">分享微信名片</span>
+          </div>
+          <i class="referral-arrow" aria-hidden="true">→</i>
+          <div class="referral-step">
+            <span class="referral-index" aria-hidden="true">02</span>
+            <span class="referral-step-label">好友成功购买</span>
+          </div>
+          <i class="referral-arrow" aria-hidden="true">→</i>
+          <div class="referral-step">
+            <span class="referral-index" aria-hidden="true">03</span>
+            <span class="referral-step-label">即可获得返利</span>
+          </div>
+        </div>
+        <div class="referral-price" aria-label="每位成功推荐奖励十元">
+          <strong>¥10</strong>
+          <small>每位成功推荐</small>
+        </div>
+      </div>
+    </section>
 
   </div>
 
